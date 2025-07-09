@@ -8,7 +8,10 @@ import java.util.*;
      public static String addProduct(String name, int quantity) {
          if (map.containsKey(name)) {
              return "Product already exists in the inventory. Please use update stock.";
-         } else {
+         } else if(quantity < 0) {
+             return "Not a valid quantity.";
+         }
+         else {
              map.put(name, quantity);
              return "Product added!";
          }
