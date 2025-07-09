@@ -17,6 +17,7 @@ class MainTest {
         inventory = new Main();
         inventory.addProduct("Cheese", 20);
         inventory.addProduct("Milk", 20);
+        inventory.addProduct("Bread", 10);
     }
 
     @Test
@@ -41,8 +42,21 @@ class MainTest {
     @Test
     void testCheckingForExistingAndNonExistingProduct() {
         String actual = inventory.checkProduct("Milk");
+        assertEquals(true, inventory.hasProduct("Milk"));
         assertEquals("Milk is in stock: 20", actual);
         String actual2 = inventory.checkProduct("Ice Cream");
+        assertEquals(false, inventory.hasProduct("Ice Cream"));
+        assertEquals("Product not found.", actual2);
+    }
+
+    @Test
+    void testUpdateExistingAndNonExistingProduct() {
+        String actual = inventory.updateProduct("Bread", 25);
+        assertEquals(true, inventory.hasProduct("Bread"));
+        assertEquals(25, inventory.getQuantity("Bread"));
+        assertEquals("Stock updated!", actual);
+        String actual2 = inventory.updateProduct("Tofu", 10);
+        assertEquals(false, inventory.hasProduct("Tofu"));
         assertEquals("Product not found.", actual2);
     }
 }

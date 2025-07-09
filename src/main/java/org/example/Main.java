@@ -31,7 +31,7 @@ import java.util.*;
              map.put(name, newQuantity);
              return "Stock updated!";
          } else {
-             return "Product is not in the inventory.";
+             return "Product not found.";
          }
      }
 
