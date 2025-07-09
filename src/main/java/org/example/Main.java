@@ -7,8 +7,9 @@ import java.util.*;
 
      public static String addProduct(String name, int quantity) {
          if (map.containsKey(name)) {
-             return "Product already exists in the inventory. Please use update stock.";
-         } else if(quantity < 0) {
+             map.put(name, quantity);
+             return "Product already exists in the inventory. Updating quantity...";
+         } else if(quantity <= 0) {
              return "Not a valid quantity.";
          }
          else {
