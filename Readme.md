@@ -24,3 +24,6 @@ View Inventory (with items): <br>
 
 Exit: <br>
 ![img_8.png](img_8.png)
+
+***Unit Testing:*** <br>
+![img_9.png](img_9.png)
