@@ -42,7 +42,7 @@ class MainTest {
     void testCheckingForExistingAndNonExistingProduct() {
         String actual = inventory.checkProduct("Milk");
         assertEquals("Milk is in stock: 20", actual);
-        String actual2 = inventory.checkProduct("Ham");
-        assertEquals("Product is not in stock.", actual2);
+        String actual2 = inventory.checkProduct("Ice Cream");
+        assertEquals("Product not found.", actual2);
     }
 }

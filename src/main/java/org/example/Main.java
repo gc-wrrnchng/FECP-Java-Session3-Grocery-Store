@@ -22,7 +22,7 @@ import java.util.*;
          if(map.containsKey(name)) {
              return name + " is in stock: " + map.get(name);
          } else {
-             return "Product is not in stock.";
+             return "Product not found.";
          }
      }
 
