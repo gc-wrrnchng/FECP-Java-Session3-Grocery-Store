@@ -18,6 +18,7 @@ class MainTest {
         inventory.addProduct("Cheese", 20);
         inventory.addProduct("Milk", 20);
         inventory.addProduct("Bread", 10);
+        inventory.addProduct("Eggs", 25);
     }
 
     @Test
@@ -57,6 +58,16 @@ class MainTest {
         assertEquals("Stock updated!", actual);
         String actual2 = inventory.updateProduct("Tofu", 10);
         assertEquals(false, inventory.hasProduct("Tofu"));
+        assertEquals("Product not found.", actual2);
+    }
+
+    @Test
+    void testRemoveExistingAndNonExistingProduct() {
+        String actual = inventory.removeProduct("Eggs");
+        assertEquals(false, inventory.hasProduct("Eggs"));
+        assertEquals("Product removed.", actual);
+        String actual2 = inventory.removeProduct("Pizza");
+        assertEquals(false, inventory.hasProduct("Pizza"));
         assertEquals("Product not found.", actual2);
     }
 }

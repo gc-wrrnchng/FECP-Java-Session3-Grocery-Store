@@ -40,7 +40,7 @@ import java.util.*;
              map.remove(name);
              return "Product removed.";
          } else {
-             return "Product is not in the inventory.";
+             return "Product not found.";
          }
      }
 
