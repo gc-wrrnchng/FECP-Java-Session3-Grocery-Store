@@ -49,6 +49,14 @@ import java.util.*;
          }
      }
 
+     public int getQuantity(String name) {
+         return map.get(name);
+     }
+
+     public boolean hasProduct(String name) {
+         return map.containsKey(name);
+     }
+
      public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int option;
