@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
-import static org.example.Main.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
@@ -17,12 +16,12 @@ class MainTest {
     void setup() {
         inventory = new Main();
         inventory.addProduct("Cheese", 20);
-        inventory.addProduct("Milk", 30);
+        inventory.addProduct("Milk", 20);
     }
 
     @Test
     void testAddProductShouldBeValid() {
-        String actual = addProduct("Banana", 30);
+        String actual = inventory.addProduct("Banana", 30);
         assertEquals(30, inventory.getQuantity("Banana"));
         assertEquals(true, inventory.hasProduct("Banana"));
         assertEquals("Product added!", actual);
@@ -30,12 +29,20 @@ class MainTest {
 
     @Test
     void testAddProductWithZeroQuantityAndAddingExistingProduct() {
-        String actual = addProduct("Mango", 0);
+        String actual = inventory.addProduct("Mango", 0);
         assertEquals(false, inventory.hasProduct("Mango"));
         assertEquals("Not a valid quantity.", actual);
-        String actual2 = addProduct("Milk", 50);
+        String actual2 = inventory.addProduct("Milk", 50);
         assertEquals(50, inventory.getQuantity("Milk"));
         assertEquals(true, inventory.hasProduct("Milk"));
         assertEquals("Product already exists in the inventory. Updating quantity...", actual2);
+    }
+
+    @Test
+    void testCheckingForExistingAndNonExistingProduct() {
+        String actual = inventory.checkProduct("Milk");
+        assertEquals("Milk is in stock: 20", actual);
+        String actual2 = inventory.checkProduct("Ham");
+        assertEquals("Product is not in stock.", actual2);
     }
 }
