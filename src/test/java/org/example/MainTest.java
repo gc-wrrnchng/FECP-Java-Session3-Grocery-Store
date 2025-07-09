@@ -1,16 +1,19 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-    private String name;
-    private int quantity;
     private Main inventory;
+    private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
     @BeforeEach
     void setup() {
@@ -19,6 +22,7 @@ class MainTest {
         inventory.addProduct("Milk", 20);
         inventory.addProduct("Bread", 10);
         inventory.addProduct("Eggs", 25);
+        System.setOut(new PrintStream(outStream));
     }
 
     @Test
@@ -69,5 +73,21 @@ class MainTest {
         String actual2 = inventory.removeProduct("Pizza");
         assertEquals(false, inventory.hasProduct("Pizza"));
         assertEquals("Product not found.", actual2);
+    }
+
+    @Test
+    void testViewInventoryPrintsCorrectOutput() {
+        inventory.viewInventory();
+
+        String output = outStream.toString().trim();
+        assertTrue(output.contains("Cheese - 20pcs"));
+        assertTrue(output.contains("Milk - 20pcs"));
+        assertTrue(output.contains("Bread - 10pcs"));
+        assertTrue(output.contains("Eggs - 25pcs"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.setOut(originalOut);
     }
 }
